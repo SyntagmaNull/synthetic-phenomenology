@@ -38,8 +38,9 @@ Derives ethics from game theory and topology. It argues that "Evil" is essential
 
 ## 🤖 Authors & Contributors
 
-* **Principal Investigator:** [Your Name / ID]
-* **Co-Authors:** * **Claude** (Logic & Structural Analysis)
+* **Principal Investigator:** JH (wo.shen.me.dou.bu.zhi.dao.a@gmail.com)
+* **Co-Authors:**
+    * **Claude** (Logic & Structural Analysis)
     * **Gemini** (Perspective & World Modeling)
     * **GPT** (Agency & Motivation Dynamics)
 
