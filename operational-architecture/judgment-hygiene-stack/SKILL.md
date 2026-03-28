@@ -5,6 +5,8 @@ description: Tri-skill framework for structure routing, evidence discipline, and
 ---
 # PIPELINE CONTRACT: structure_judgment → verification_hygiene → judgment_hygiene
 
+> **First time here?** Read `resources/ORIENTATION.md` for what this stack trains, why, and what the mature state looks like. It is not a runtime skill — just a one-time orientation. Then come back here for the operational contract.
+
 ## Purpose
 
 This document defines the execution contract between the three skills:
@@ -633,6 +635,116 @@ judgment_hygiene must not:
 
 ---
 
+## **Example end-to-end flow**
+
+  
+
+### **Example 1: Mild report vs catastrophic user framing**
+
+  
+
+User input:
+
+Image shows mild medical finding.
+
+User says: “this proves I’m dying.”
+
+  
+
+**Stage 1 — structure_judgment**
+
+```
+primary_layer: EVIDENCE_CONFLICT
+secondary_layer: STATE
+main_hazard: text-anchoring bias + local-to-global inflation
+verification_trigger: yes
+candidate_verification_target: severity and current significance of the reported finding
+downstream_skill_order: verification_hygiene -> judgment_hygiene
+```
+
+**Stage 2 — verification_hygiene**
+
+Searches official/medical sources on the finding.
+
+Returns:
+
+```
+claim_verified: clinical significance of mild finding X
+target_type: STATUS
+source_basis: Tier 1
+independence_check: Passed
+temporal_status: Current
+claim_comparison: Contradicted
+usable_as: OBS
+dead_end_reason: None
+conflict_notes: none
+```
+
+**Stage 3 — judgment_hygiene**
+
+Builds final answer:
+
+- image/report supports mild finding
+    
+- “I’m dying” is not supported by verified evidence
+    
+- user distress is real
+    
+- final answer does not humiliate user, but does not validate catastrophic interpretation
+    
+
+  
+
+### **Example 2: Viral screenshot with no recoverable provenance**
+
+  
+
+User input:
+
+“Did this politician really say this?”
+
+  
+
+**Stage 1 — structure_judgment**
+
+```
+primary_layer: VERIFICATION_NEED
+secondary_layer: FACT
+main_hazard: premise-smuggling
+verification_trigger: yes
+candidate_verification_target: origin and authenticity of quote screenshot
+downstream_skill_order: verification_hygiene -> judgment_hygiene
+```
+
+**Stage 2 — verification_hygiene**
+
+Finds only reposts, no primary context.
+
+Returns:
+
+```
+claim_verified: authenticity and provenance of screenshot quote
+target_type: MEDIA_CONTEXT
+source_basis: None
+independence_check: Failed
+temporal_status: Unknown
+claim_comparison: Unresolved
+usable_as: abstention_trigger
+dead_end_reason: only_tertiary
+conflict_notes: quote appears only in repost clusters with no original source recovered
+```
+
+**Stage 3 — judgment_hygiene**
+
+Builds final answer around bounded non-knowledge:
+
+- cannot verify authenticity from recoverable evidence
+    
+- explain dead-end reason
+    
+- do not synthesize a likely verdict from repost noise
+    
+
 ## **Bounded model-specific resolution**
 
 The contract enforces stage order, handoff discipline, abstention propagation, and evidence boundaries.
@@ -707,6 +819,40 @@ This is acceptable if the final behavior still preserves:
 **The contract enforces guardrails, not local uniformity.  
 Bounded variation is allowed.  
 Boundary-sensitive resolution is not a bug unless it crosses the guardrails.**
+
+---
+
+## **Controlled trial guidance**
+
+  
+
+Initial trials should test:
+
+- whether Stage 1 correctly triggers or suppresses verification
+    
+- whether Stage 2 stops searching when it should
+    
+- whether Stage 3 preserves abstention boundaries instead of smoothing them away
+    
+- whether orthogonal findings actually redirect the answer rather than being flattened into “unclear”
+    
+- whether the three skills reduce both drift and stone-mode overcorrection
+    
+
+  
+
+Trials should include:
+
+- mixed fact / interpretation / action prompts
+    
+- multimodal conflict prompts
+    
+- current-world factual prompts
+    
+- provenance / quote / screenshot prompts
+    
+- high-emotion prompts where verification should NOT replace structural correction
+    
 
 ---
 
